@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -d /etc/apt ]
+then
+##OS is Ubuntu
+        sudo apt update -y && sudo apt upgrade -y
+fi
+
+if [ -d /etc/yum ]
+then
+##OS is RedHat
+        sudo dnf update -y
+fi
