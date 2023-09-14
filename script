@@ -1,0 +1,42 @@
+finished=0
+while [ $finished -ne 1 ]
+do
+        echo "What would you like to do below? "
+        sleep 3
+        echo "1 - Update"
+        echo "2 - Install"
+        echo "3 - Locate a file"
+        echo "4 - Check Process"
+        echo "5 - Check IP Address"
+        echo "6 - Service Restart"
+        echo "7 - Remove a User"
+        echo "8 - Add a user"
+        echo "9 - Exit"
+        read choice;
+
+        case $choice in
+                1) sudo dnf update -y;;
+                2) echo "What package would you like to install?"
+                   sleep 1
+                   read pack
+                   sudo dnf update -y && sudo dnf install $pack ;;
+                3) echo "What file would you like to locate?"
+                   read f
+                   locate $f;;
+                4) top;;
+                5) ip addr;;
+                6) echo "Which service would you like to restart?"
+                   sleep 1
+                   echo "Please only enter service name."
+                   read ser
+                   sudo systemctl restart $ser ;;
+                7) echo -en "What user are we deleting? "
+                   read username
+                   sudo userdel $username;;
+                8) echo -en "What is the user we wish to add? "
+                   read name
+                   sudo adduser $name;;
+                9) finished=1 ;;
+                *) echo "Please choice a number (1-8)"
+        esac
+done
