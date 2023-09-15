@@ -1,0 +1,30 @@
+#!/bin/bash
+
+###Functions help with repeated code no need to repeat exit code
+######################################
+release=/etc/os-release
+logfile=/logfiles/update.log
+errorlog=/logfiles/update_errors.log
+######################################
+check_exit_status() {
+        if [ $? -ne 0 ]
+        then
+        echo "An error has occured,please check $errorlog file"
+        fi
+}
+
+if grep -q "Ubuntu" $release || grep -q "Debian" $release
+then
+##OS is Ubuntu
+        sudo apt update -y && sudo apt upgrade -y 1>>$logfile 2>>$errorlog
+        check_exit_status
+fi
+
+if grep -q "Debian" $release || grep -q "Red Hat" $release
+then
+##OS is RedHat
+        sudo dnf update -y 1>>$logfile 2>>$errorlog
+        check_exit_status
+fi
+
+
