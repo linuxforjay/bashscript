@@ -1,0 +1,23 @@
+#!/bin/bash
+finished=0
+while [ $finished -ne 1 ]
+do
+        echo "Which machine would you like to log into "
+        echo "1 - Zabbix"
+        echo "2 - jmason-dc-dev"
+        echo "3 - server001"
+        echo "4 - Ansible"
+        echo "5 - Siti Ubuntu Server"
+        echo "6 - Exit"
+        read choice;
+
+        case $choice in
+                1) ssh skywalker@10.1.15.250;;
+                2) ssh skywalker@10.1.14.34;;
+                3) ssh skywalker@10.1.15.76;;
+                4) ssh skywalker@10.1.14.22;;
+                5) ssh jay@10.1.14.10;;
+                6) finished=1 ;;
+                *) echo "Please choose a number (1-5)"
+        esac
+done
