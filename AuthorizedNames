@@ -1,0 +1,12 @@
+#!/bin/bash
+
+authorized_names=("alex")
+read -p "Name: " typed_name
+
+if [[ "${authorized_names[*]}" == *"${typed_name}"* ]]; then
+        echo "Welcome $authorized_names " >> /home/skywalker/ssh_logger
+        ssh skywalker@10.1.14.8
+else
+        echo "Unauthorized user : $typed_name" >> /home/skywalker/ssh_logger
+fi
+
