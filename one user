@@ -1,0 +1,12 @@
+#!/bin/bash
+
+users=""
+
+echo -en "Username: "
+read username
+
+if [ "$username" == "$users" ]; then
+    sudo dnf update -y
+else
+    echo "Sorry, no can do"
+fi
