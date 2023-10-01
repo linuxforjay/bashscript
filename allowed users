@@ -1,0 +1,12 @@
+#!/bin/bash
+
+allowed_users=("jay" "" "")
+
+echo -en "Username: "
+read username
+
+if [[ " ${allowed_users[@]} " =~ " $username " ]]; then
+    sudo dnf update -y
+else
+    echo "Sorry, no can do"
+fi
